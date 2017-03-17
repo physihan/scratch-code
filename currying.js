@@ -1,4 +1,4 @@
-var currying = function currying (fn) {
+var currying = function  (fn) {
   var args = []
   return function () {
 //   this.a=5
