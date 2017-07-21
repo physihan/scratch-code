@@ -124,3 +124,16 @@ alert(arr.length);
 console.log(arr);
 //["a", "b", undefined, undefined, "b"]
 ```
+
+>数组拍平
+使用迭代器来一个个输出拍平的数组元素
+
+```js
+flat =function *flat(arr){
+    for(let i=0;i<arr.length;i++>){
+        if(Object.prototype.toString.call(arr[i])==='[object Array]')
+            yield *flat(arr[i])
+        else yield arr[i]
+    }
+}
+```

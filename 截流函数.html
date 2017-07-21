@@ -27,8 +27,8 @@
                 return false
             }
             timer=setTimeout(function(){
-                // clearTimeout(timer)
-                timer=null
+                clearTimeout(timer)
+                // timer=null
                 fn.apply(_me,args)
             },interval||500)
         }
