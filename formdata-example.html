@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.js"></script>
+</head>
+
+<body>
+    <form onsubmit="submit()">
+        <input type="file" id="myFile" name="qq[]" multiple>
+        <input type="submit">
+    </form>
+</body>
+<script>
+    var fd = new FormData()
+
+    myFile.onchange = function() {
+        console.log(this.value)
+        fd.append('assa', 'sasa')
+        Array.prototype.forEach.call(this.files, function(x, i) {
+            fd.append('qq', x)
+        })
+
+
+
+        console.log(fd.get('qq'));
+    }
+    console.log(document.forms[0]);
+
+    function submit() {
+        var fd = new FormData(myFile)
+        fd.append('sadada.ksajd')
+    }
+</script>
+
+</html>
