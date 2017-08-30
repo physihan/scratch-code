@@ -22,7 +22,7 @@ promise_maker = function (num) {
  */
 var gen=function * gen() {
     x = yield promise_maker(100)
-    y = yield promise_maker(200)
+    y = yield promise_maker(200)+2
     z = yield promise_maker(300)
 
     return [x, y, z]
