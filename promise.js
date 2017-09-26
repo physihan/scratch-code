@@ -78,6 +78,34 @@ function MyPromise(fn) {
     }, 0)
 
   }
+  this.then=function(onFullfilled,onRejected){
+    var self=this
+    return new MyPromise(function(resolve,reject){
+      return self.done(function(result){
+        if(typeof onFullfilled==='function'){
+          try {
+            return resolve(onFullfilled(result))
+          } catch (error) {
+            return resolve(error)
+            
+          }
+        }else{
+          return resolve(result)
+        }
+      },function(e){
+        if(typeof onRejected==='function'){
+          try{
+            return resolve(onRejected(e))
+          }catch(ex){
+            return reject(ex)
+          }
+        }else{
+          return reject(error)
+        }
+
+      })
+    })
+  }
   doResolve(fn, resolve, reject)
   this.state={state,value}
 
