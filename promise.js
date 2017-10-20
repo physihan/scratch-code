@@ -59,27 +59,34 @@ function MyPromise(fn) {
 
   function handle(handler) {
     if (state === PENDING) {
-      handlers.push(handler);
+      // handlers.push(handler);
+      console.log(handlers+2)
     } else {
       if (state === FULFILLed && typeof handler.onFulfilled === 'function') {
         handler.onFulfilled(value);
+      console.log(12131)
+      
       }
       if (state === REJECTED && typeof handler.onRejected === 'function') {
         handler.onRejected(value);
+      console.log(handlers+1)
+      
       }
     }
   }
   this.done = function(onFulfilled, onRejected) {
     setTimeout(function() {
       handle({
-        onFulfilled,
-        onRejected
+        onFulfilled:onFulfilled,
+        onRejected:onRejected
       });
     }, 0);
+    console.log(223)
   };
   this.then = function(onFulfilled, onRejected) {
     var self = this;
     return new MyPromise(function(resolve, reject) {
+      console.log(self.state)
       return self.done(
         function(result) {
           if (typeof onFulfilled === 'function') {
@@ -142,7 +149,14 @@ function doResolve(fn, onFulfilled, onRejected) {
   }
 }
 var p = new MyPromise(function(resolve, reject) {
-  resolve(1);
+  setTimeout(function() {
+  resolve(1000);
+  
+  }, 1000);
 });
-
-console.log(p.then(1, 2).then(1));
+p.then((x)=>{
+  console.log(x+11);
+})
+// p.then(Promise.resolve(2))
+// // console.log(p);
+// p.done((data)=>console.log(data+'sassa'))
